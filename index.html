@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIFA Golden Team</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>FIFA GOLDEN TEAM | FIFA BALON D'OR</h1>
+  </header>
+
+  <main>
+    <div class="field-container">
+        <div class="field">
+          <!-- Goleiro -->
+          <div class="player" style="top: 82%; left: 44%;" data-posicao="goleiro" onclick="abrirSelecao(this)">+</div>
+      
+          <!-- Defensores -->
+          <div class="player" style="top: 66%; left: 20%;" data-posicao="defesa" onclick="abrirSelecao(this)">+</div>
+          <div class="player" style="top: 66%; left: 38%;" data-posicao="defesa" onclick="abrirSelecao(this)">+</div>
+          <div class="player" style="top: 66%; left: 56%;" data-posicao="defesa" onclick="abrirSelecao(this)">+</div>
+          <div class="player" style="top: 66%; left: 74%;" data-posicao="defesa" onclick="abrirSelecao(this)">+</div>
+      
+          <!-- Meias -->
+          <div class="player" style="top: 46%; left: 28%;" data-posicao="meio" onclick="abrirSelecao(this)">+</div>
+          <div class="player" style="top: 46%; left: 44%;" data-posicao="meio" onclick="abrirSelecao(this)">+</div>
+          <div class="player" style="top: 46%; left: 60%;" data-posicao="meio" onclick="abrirSelecao(this)">+</div>
+      
+          <!-- Atacantes -->
+          <div class="player" style="top: 25%; left: 20%;" data-posicao="atacante" onclick="abrirSelecao(this)">+</div>
+          <div class="player" style="top: 25%; left: 44%;" data-posicao="atacante" onclick="abrirSelecao(this)">+</div>
+          <div class="player" style="top: 25%; left: 68%;" data-posicao="atacante" onclick="abrirSelecao(this)">+</div>
+        </div>
+      </div>
+      
+
+    <input type="text" placeholder="Insira o nome do time..." class="team-name">
+  </main>
+
+  <!-- Modal de seleção -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <h2>Escolha o jogador</h2>
+      <ul id="lista-jogadores"></ul>
+      <button onclick="fecharModal()">Cancelar</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
