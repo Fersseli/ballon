@@ -64,6 +64,14 @@ let jogadorSelecionadoBallon = null;
   }
   
   document.getElementById('btnEnviarTime').addEventListener('click', () => {
+     const ultimoEnvio = localStorage.getItem('ultimoEnvioGoldenTeam');
+     const agora = new Date().getTime();
+     if (ultimoEnvio && agora - parseInt(ultimoEnvio) < 24 * 60 * 60 * 1000) {
+      alert("Você já enviou seu time nas últimas 24 horas. Tente novamente mais tarde.");
+      return;
+      }
+
+
     const players = document.querySelectorAll('.player');
     let tudoSelecionado = true;
   
@@ -114,6 +122,8 @@ let jogadorSelecionadoBallon = null;
     })
     .then(() => {
       // Só aqui abre o popup de sucesso
+      localStorage.setItem('ultimoEnvioGoldenTeam', agora.toString());
+    
       abrirPopupEnviar();
     })
     .catch((err) => {
@@ -237,96 +247,3 @@ let jogadorSelecionadoBallon = null;
   if (btnFecharReset) {
     btnFecharReset.addEventListener('click', () => fecharPopup('popup-reset'));
   }
- // =============================================
-// SISTEMA DE RANKING (PREFIXO 'r' PARA TODAS AS VARIÁVEIS/FUNÇÕES)
-// =============================================
-
-
-
-function normalizarNome(nome) {
-    return nome
-        .normalize("NFD")                   // separa letras de seus acentos
-        .replace(/[\u0300-\u036f]/g, "")    // remove os acentos
-        .toLowerCase()                      // tudo minúsculo
-        .replace(/\s+/g, '');               // remove todos os espaços
-}
-
-const rankingSelecionado = Array(10).fill(null); // Armazena os 10 escolhidos
-
-
-function renderRankingList() {
-  const rankingList = document.getElementById('ranking-list');
-    rankingList.innerHTML = '';
-
-    for (let i = 0; i < 10; i++) {
-        const div = document.createElement('div');
-        div.className = 'player rank-player';
-        div.style.margin = '10px auto';
-        div.dataset.rank = i;
-
-        if (rankingSelecionado[i]) {
-            const nome = rankingSelecionado[i];
-            const nomeNormalizado = normalizarNome(nome);
-            div.innerHTML = `
-                <img src="sprites/${nomeNormalizado}.png" alt="${nome}">
-                <small>${i + 1}º - ${nome}</small>
-            `;
-        } else {
-            div.innerHTML = `<small>${i + 1}º</small><span style="font-size: 24px;">+</span>`;
-        }
-
-        div.onclick = () => abrirSelecaoRanking(i, div);
-        rankingList.appendChild(div);
-    }
-}
-
-function abrirSelecaoRanking(index, div) {
-    const ul = document.getElementById('lista-jogadores-ballon');
-    ul.innerHTML = '';
-
-    jogadoresBallonDor.forEach(jogador => {
-        const jaSelecionado = rankingSelecionado.includes(jogador);
-        if (!jaSelecionado || rankingSelecionado[index] === jogador) {
-            const li = document.createElement('li');
-            li.textContent = jogador;
-            li.onclick = () => selecionarJogadorRanking(index, jogador);
-            ul.appendChild(li);
-        }
-    });
-
-    document.getElementById('modal-ballon-dor').style.display = 'flex';
-}
-
-function selecionarJogadorRanking(index, nome) {
-    rankingSelecionado[index] = nome;
-    renderRankingList();
-    fecharModalBallonDor();
-}
-
-
-function fecharModalBallonDor() {
-    document.getElementById('modal-ballon-dor').style.display = 'none';
-}
-
-function enviarVotoBallonDor() {
-    if (rankingSelecionado.includes(null)) {
-        alert("Preencha todas as 10 posições antes de votar!");
-        return;
-    }
-
-    console.log("Ranking votado:", rankingSelecionado);
-
-    // Exemplo: enviar para um Google Form (adicione os campos corretos)
-    // const formUrl = 'https://seu-form-url-aqui';
-    // const formData = new FormData();
-    // rankingSelecionado.forEach((jogador, i) => {
-    //     formData.append(`entry.X${i}`, jogador); // substitua X0, X1... com seus entry IDs reais
-    // });
-    // fetch(formUrl, { method: 'POST', mode: 'no-cors', body: formData });
-
-    abrirPopupEnviar();
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-    renderRankingList();
-});

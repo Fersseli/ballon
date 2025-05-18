@@ -182,11 +182,21 @@ function fecharModalBallonDor() {
 }
 
 function enviarVotoBallonDor() {
+  const ultimoVoto = localStorage.getItem('ultimoVotoBallonDor');
+  const agora = new Date().getTime();
+
+  if (ultimoVoto && agora - parseInt(ultimoVoto) < 24 * 60 * 60 * 1000) {
+    alert("Você já votou nas últimas 24 horas. Tente novamente mais tarde.");
+    return;
+  }
+
   if (rankingSelecionado.includes(null)) {
     abrirPopupErro();
     return;
   }
 
+   localStorage.setItem('ultimoVotoBallonDor', agora.toString());
+   
   const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSevPkeYnwqC0MAeN0QR-IeyHJc8ngQqHu0OruHIUOaVZ5vsoQ/formResponse';
 
   // Substitua pelos seus códigos reais (entry.X)
