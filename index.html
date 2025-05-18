@@ -1,50 +1,112 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FIFA Golden Team</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>FIFA GOLDEN TEAM | FIFA BALON D'OR</h1>
-  </header>
+    <header>
+        <nav class="header-nav">
+          <a href="ballondor.html" id="ballonDor" class="header-link">FIFA BALON D'OR</a>
+          <span class="separator">|</span>
+          <a href="#" id="goldenTeam" class="header-link">FIFA GOLDEN TEAM</a>
+        </nav>
+      </header>
+      
 
   <main>
+   
     <div class="field-container">
         <div class="field">
-          <!-- Goleiro -->
+
+    <!--
+           Goleiro 
           <div class="player" style="top: 82%; left: 44%;" data-posicao="goleiro" onclick="abrirSelecao(this)">+</div>
       
-          <!-- Defensores -->
-          <div class="player" style="top: 66%; left: 20%;" data-posicao="defesa" onclick="abrirSelecao(this)">+</div>
-          <div class="player" style="top: 66%; left: 38%;" data-posicao="defesa" onclick="abrirSelecao(this)">+</div>
-          <div class="player" style="top: 66%; left: 56%;" data-posicao="defesa" onclick="abrirSelecao(this)">+</div>
-          <div class="player" style="top: 66%; left: 74%;" data-posicao="defesa" onclick="abrirSelecao(this)">+</div>
+           Defensores 
+          <div class="player" style="top: 66%; left: 20%;" data-posicao="le" onclick="abrirSelecao(this)">+</div>
+          <div class="player" style="top: 66%; left: 38%;" data-posicao="zag" onclick="abrirSelecao(this)">+</div>
+          <div class="player" style="top: 66%; left: 56%;" data-posicao="zag" onclick="abrirSelecao(this)">+</div>
+          <div class="player" style="top: 66%; left: 74%;" data-posicao="ld" onclick="abrirSelecao(this)">+</div>
       
-          <!-- Meias -->
+           Meias
           <div class="player" style="top: 46%; left: 28%;" data-posicao="meio" onclick="abrirSelecao(this)">+</div>
           <div class="player" style="top: 46%; left: 44%;" data-posicao="meio" onclick="abrirSelecao(this)">+</div>
           <div class="player" style="top: 46%; left: 60%;" data-posicao="meio" onclick="abrirSelecao(this)">+</div>
       
-          <!-- Atacantes -->
+          Atacantes 
           <div class="player" style="top: 25%; left: 20%;" data-posicao="atacante" onclick="abrirSelecao(this)">+</div>
           <div class="player" style="top: 25%; left: 44%;" data-posicao="atacante" onclick="abrirSelecao(this)">+</div>
           <div class="player" style="top: 25%; left: 68%;" data-posicao="atacante" onclick="abrirSelecao(this)">+</div>
         </div>
       </div>
-      
+    -->
 
-    <input type="text" placeholder="Insira o nome do time..." class="team-name">
+          <!-- Goleiro -->
+            <div class="player" style="top: 82%; left: 43%;" data-posicao="goleiro" onclick="abrirSelecao(this)">+</div>
+
+            <!-- Defesa -->
+            <div class="player" style="top: 70%; left: 9%;" data-posicao="le" onclick="abrirSelecao(this)">+</div>
+            <div class="player" style="top: 70%; left: 31%;" data-posicao="zag1" onclick="abrirSelecao(this)">+</div>
+            <div class="player" style="top: 70%; left: 55%;" data-posicao="zag2" onclick="abrirSelecao(this)">+</div>
+            <div class="player" style="top: 70%; left: 77%;" data-posicao="ld" onclick="abrirSelecao(this)">+</div>
+
+            <!-- Meias -->
+            <div class="player" style="top: 40%; left: 9%;" data-posicao="mee" onclick="abrirSelecao(this)">+</div>
+            <div class="player" style="top: 40%; left: 43%;" data-posicao="mei" onclick="abrirSelecao(this)">+</div>
+            <div class="player" style="top: 40%; left: 77%;" data-posicao="med" onclick="abrirSelecao(this)">+</div>
+            <div class="player" style="top: 53%; left: 26%;" data-posicao="mcvol1" onclick="abrirSelecao(this)">+</div>
+            <div class="player" style="top: 53%; left: 60%;" data-posicao="mcvol2" onclick="abrirSelecao(this)">+</div>
+
+            <!-- Atacante -->
+            <div class="player" style="top: 25%; left: 43%;" data-posicao="atacante" onclick="abrirSelecao(this)">+</div>
+            </div>
+      </div>
+
+    <div class="btn-group">
+        <button class="btn-enviar-time" id="btnEnviarTime">enviar</button>
+        <button class="btn-reset" id="btnReset">reset</button>
+    </div>
+    <script src="script.js"></script>
+
+
+    <div id="popup-reset" class="popup">
+        <div class="popup-content">
+          <button class="popup-close" onclick="fecharPopup('popup-reset')">×</button>
+          <p>time resetado com sucesso!</p>
+        </div>
+    </div>
+    
+    <!-- Popup Enviar -->
+    <div id="popupEnviar" class="popup-fade">
+        <div class="popup-content">
+            <button class="popup-close" onclick="fecharPopup('popupEnviar')">×</button>
+            <p>time enviado com sucesso!</p>
+        </div>
+    </div>
+
+    <div id="popupErro" class="popup-fade">
+        <div class="popup-content">
+            <button class="popup-close" onclick="fecharPopup('popupErro')">×</button>
+            <p>preencha os 11 jogadores</p>
+        </div>
+    </div>
+    
+  
+
+    
+  </body>
   </main>
-
+  
   <!-- Modal de seleção -->
   <div class="modal" id="modal">
     <div class="modal-content">
       <h2>Escolha o jogador</h2>
       <ul id="lista-jogadores"></ul>
-      <button onclick="fecharModal()">Cancelar</button>
+      <button class="cancelar-btn" onclick="fecharModal()">cancelar</button>
     </div>
   </div>
 

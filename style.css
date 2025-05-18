@@ -1,26 +1,75 @@
 body {
     margin: 0;
+    padding: 0;
     background-color: #111;
     color: #fff;
-    font-family: sans-serif;
+    font-family: "Montserrat", "sans-serif";
   }
   
   header {
     background-color: #c9a732;
-    padding: 10px;
     text-align: center;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    user-select: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 10px 40px; /* aumentei o padding horizontal para 40px */
+    box-sizing: border-box; /* importante para o padding contar dentro da largura */
+  }
+  
+
+  .header-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem; /* espaço entre os textos e o separador */
+    white-space: nowrap; /* evita quebra de linha */
+    font-size: clamp(1rem, 2vw, 2rem); /* responsivo: de 1rem até 2rem */
+  }
+  
+  .header-link {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: normal;
+    transition: font-weight 0.3s ease;
+  }
+  
+  .header-link:hover {
     font-weight: bold;
   }
   
+  .separator {
+    user-select: none;
+    color: white;
+    font-weight: normal;
+  }
+  
+  .main-container {
+    margin-top: 60px;
+    padding: 5vh 0; /* espaço preto acima e abaixo proporcional à altura da tela */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background-color: #111; /* fundo cinza garantido */
+  }
+
   .field-container {
     position: relative;
+    width: 90vw;
     max-width: 400px;
-    margin: 30px auto;
-    aspect-ratio: 9/16;
-    background-image: url("sprite/field.png");
+    margin: 70px auto;
+    aspect-ratio: 9/14;
+    background-image: url("sprites/field.png");
     background-size: cover;
     background-position: center;
-    border-radius: 10px;
+    border-radius: 20px;
     overflow: hidden;
   }
   
@@ -40,10 +89,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
+    font-size: 18px;
     cursor: pointer;
     flex-direction: column;
     text-align: center;
+    user-select: none;
   }
   
   .player img {
@@ -52,18 +102,6 @@ body {
     border-radius: 50%;
   }
   
-  .team-name {
-    display: block;
-    margin: 20px auto 40px;
-    padding: 10px;
-    border-radius: 20px;
-    border: none;
-    width: 80%;
-    text-align: center;
-    font-size: 16px;
-  }
-  
-  /* Modal */
   .modal {
     position: fixed;
     top: 0; left: 0;
@@ -99,3 +137,169 @@ body {
   .modal-content li:hover {
     background: #666;
   }
+
+  .btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* espaço entre os botões */
+    margin: 20px auto 40px; /* margem agrupada aqui */
+    max-width: 220px; /* opcional, para limitar a largura */
+  }
+  
+  .btn-enviar-time {
+    padding: 10px;
+    background-color: #c9a732;
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    width: 100px;      /* corrigi para ter unidade */
+    height: 90px;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(201, 167, 50, 0.6);
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    margin: 0; /* removi para alinhar no flex */
+  }
+  
+  .btn-enviar-time:hover {
+    background-color: #b49227;
+    box-shadow: 0 8px 15px rgba(180, 146, 39, 0.9);
+    transform: translateY(-3px);
+  }
+  
+  .btn-enviar-time:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 7px rgba(201, 167, 50, 0.5);
+  }
+  
+  .btn-reset {
+    padding: 10px;
+    background-color: #9D8947;
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    width: 100px;
+    height: 90px;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(157, 137, 71, 0.6);
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    margin: 0;
+  }
+  
+  .btn-reset:hover {
+    background-color: #877a3f;
+    box-shadow: 0 8px 15px rgba(135, 122, 63, 0.9);
+    transform: translateY(-3px);
+  }
+  
+  .btn-reset:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 7px rgba(157, 137, 71, 0.5);
+  }
+
+  .btn-enviar-time, .btn-reset {
+    font-family: 'Montserrat', sans-serif;
+    /*text-transform: low=  pra garantir minúsculas */
+  }
+
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6); /* tela escurecida */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: 10000;
+  }
+  
+  .popup-fade {
+    display: none;  /* Escondido por padrão */
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    /* Outras propriedades para centralizar o popup */
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(72, 69, 57, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+
+  .popup.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .popup-content {
+    background-color: #484539;
+    padding: 20px 30px;
+    border-radius: 8px;
+    position: relative;
+    color: white;
+    min-width: 280px;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    transform: translateY(-10px);
+    transition: transform 0.3s ease;
+  }
+  
+  .popup.show .popup-content {
+    transform: translateY(0);
+  }
+  
+  .popup-close {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+  }
+
+  button.cancelar-btn {
+    background-color: #484539;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 2px 6px rgba(72, 69, 57, 0.6);
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+  }
+  
+  button.cancelar-btn:hover {
+    background-color: #5a5849;
+    box-shadow: 0 4px 10px rgba(72, 69, 57, 0.8);
+  }
+  
+  button.cancelar-btn:active {
+    background-color: #3a3730;
+    box-shadow: 0 1px 3px rgba(72, 69, 57, 0.9);
+  }
+  
+  
