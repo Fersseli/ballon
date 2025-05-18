@@ -50,7 +50,7 @@ body {
   }
   
   .main-container {
-    margin-top: 60px;
+    margin-top: 80px;
     padding: 5vh 0; /* espaço preto acima e abaixo proporcional à altura da tela */
     display: flex;
     justify-content: center;
@@ -64,7 +64,7 @@ body {
     position: relative;
     width: 90vw;
     max-width: 400px;
-    margin: 70px auto;
+    margin: 40px auto;
     aspect-ratio: 9/14;
     background-image: url("sprites/field.png");
     background-size: cover;
@@ -151,7 +151,7 @@ body {
     background-color: #c9a732;
     border: none;
     color: #fff;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 1.1rem;
     width: 100px;      /* corrigi para ter unidade */
     height: 90px;
@@ -177,11 +177,42 @@ body {
     box-shadow: 0 3px 7px rgba(201, 167, 50, 0.5);
   }
   
+  .btn-votar {
+    padding: 10px;
+    background-color: #c9a732;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    width: 100px;      /* corrigi para ter unidade */
+    height: 90px;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(201, 167, 50, 0.6);
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    margin: 0; /* removi para alinhar no flex */
+  }
+  
+  .btn-votar:hover {
+    background-color: #b49227;
+    box-shadow: 0 8px 15px rgba(180, 146, 39, 0.9);
+    transform: translateY(-3px);
+  }
+
+  .btn-votar:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 7px rgba(201, 167, 50, 0.5);
+  }
+
   .btn-reset {
     padding: 10px;
     background-color: #9D8947;
     border: none;
-    color: #fff;
+    color: #000000;
     font-weight: 700;
     font-size: 1.1rem;
     width: 100px;
@@ -208,7 +239,7 @@ body {
     box-shadow: 0 3px 7px rgba(157, 137, 71, 0.5);
   }
 
-  .btn-enviar-time, .btn-reset {
+  .btn-enviar-time, .btn-reset, .btn-votar {
     font-family: 'Montserrat', sans-serif;
     /*text-transform: low=  pra garantir minúsculas */
   }
@@ -302,4 +333,172 @@ body {
     box-shadow: 0 1px 3px rgba(72, 69, 57, 0.9);
   }
   
+  .card-container {
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
   
+  .card {
+    background-color: #2b2b2b;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    height: 25vh; /* Aproximadamente 25% da altura da tela */
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  
+  .card img {
+    width: 40%;
+    margin-right: 30px;
+    object-fit: cover;
+  }
+  
+  
+  .card-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .card-text .nome {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .card-text .info {
+    color: #ddd;
+    max-width: 100%;    /* Não ultrapassa a largura do container pai */
+    width: auto;  
+    overflow-wrap: break-word; /* Compatibilidade melhor */
+    white-space: normal;   /* Permite quebra de linha normal */
+    padding-right: 10px;
+    box-sizing: border-box;
+    font-size: clamp(0.3rem, 2.5vw, 1.2rem);
+  }
+
+.ranking-container {
+  background-color: #2b2b2b;
+  padding: 30px 20px;
+  border-radius: 15px;
+  max-width: 500px;
+  width: 100%;
+  margin: 40px auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.rank-player {
+  width: 160px;
+  height: 80px;
+  background-color: #1e1e1e; /* cor mais escura que o fundo padrão (#2b2b2b) */
+  border-radius: 10px; /* bordas levemente arredondadas */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: white;
+  user-select: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  transition: background-color 0.2s ease;
+}
+
+.rank-player:hover {
+  background-color: #333;
+}
+
+.rank-player img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-bottom: 4px;
+}
+
+#ranking-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 91px;
+}
+
+.rank-slot {
+  display: flex;
+  justify-content: center;
+}
+
+#lista-jogadores-ballon li.selecionado {
+  background-color: #9D8E5A !important;
+  color: #000000;
+  font-weight: bold;
+}
+
+.textospagina {
+  color: white;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.5rem); /* responsivo */
+  line-height: 1.5;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.btn-reset-ranking {
+    padding: 10px;
+    background-color: #9D8947;
+    border: none;
+    color: #000000;
+    font-weight: 700;
+    font-size: 1.1rem;
+    width: 100px;
+    height: 90px;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(157, 137, 71, 0.6);
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.btn-reset-ranking:hover {
+    background-color: #877a3f;
+    box-shadow: 0 8px 15px rgba(135, 122, 63, 0.9);
+    transform: translateY(-3px);
+}
+
+.btn-reset-ranking:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 7px rgba(157, 137, 71, 0.5);
+}
+
+.rodape {
+  background-color: #9D8947;
+  color: #272727;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 40px;
+  border-top: 1px solid #333;
+}
