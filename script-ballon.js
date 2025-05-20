@@ -185,7 +185,7 @@ function enviarVotoBallonDor() {
   const ultimoVoto = localStorage.getItem('ultimoVotoBallonDor');
   const agora = new Date().getTime();
 
-  if (ultimoVoto && agora - parseInt(ultimoVoto) < 24 * 60 * 60 * 1000) {
+  if (ultimoVoto && agora - parseInt(ultimoVoto) < 4 * 60 * 60 * 1000) {
     alert("Você já votou nas últimas 24 horas. Tente novamente mais tarde.");
     return;
   }

@@ -66,7 +66,7 @@ let jogadorSelecionadoBallon = null;
   document.getElementById('btnEnviarTime').addEventListener('click', () => {
      const ultimoEnvio = localStorage.getItem('ultimoEnvioGoldenTeam');
      const agora = new Date().getTime();
-     if (ultimoEnvio && agora - parseInt(ultimoEnvio) < 24 * 60 * 60 * 1000) {
+     if (ultimoEnvio && agora - parseInt(ultimoEnvio) < 4 * 60 * 60 * 1000) {
       alert("Você já enviou seu time nas últimas 24 horas. Tente novamente mais tarde.");
       return;
       }
@@ -114,7 +114,7 @@ let jogadorSelecionadoBallon = null;
         formData.append(camposForm[posicao], jogador);
       }
     });
-  
+   
     fetch(formUrl, {
       method: 'POST',
       mode: 'no-cors',
